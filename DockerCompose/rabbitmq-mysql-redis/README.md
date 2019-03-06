@@ -4,5 +4,6 @@
 
 mysqld --innodb-flush-method=littlesync --innodb-use-native-aio=OFF --log_bin=ON
 
+啟動 docker compose
 run docker-compose up -d
 
