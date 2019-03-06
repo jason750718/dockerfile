@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  mysql:
+    container_name: mariadb
+    image: mariadb
+    restart: always
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/sql-scripts/:/docker-entrypoint-initdb.d
+      - ./mysql/conf/mysqld.conf:/etc/mysql/mysql.conf.d/mysqld.cnf
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=adminadmin
+    command:
+      mysqld --innodb-flush-method=littlesync --innodb-use-native-aio=OFF --log_bin=ON
+
+  redis:
+    image: 'redis:3.2.11'
+    restart: always
+    hostname: redis
+    container_name: redis
+    ports:
+      - '6379:6379'
+    command: redis-server --requirepass adminadmin
+    
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    container_name: rabbitmq
+    hostname: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: "springcloud"
+      RABBITMQ_DEFAULT_PASS: "123456"
+    ports:
+      - "5672:5672"
+      - "15672:15672"  
