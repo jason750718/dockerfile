@@ -16,3 +16,8 @@ service ssh start
 docker exec -it jenkins bash
 2. Print Password
 cat /var/jenkins_home/secrets/initialAdminPassword
+
+# Volume Path
+1. Docker Inspect
+docker inspect jenkins
+2. Find "Mounts"->"Type":"volume", "Source" is the path
