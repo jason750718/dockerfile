@@ -2,5 +2,5 @@
 # 下一行指令是為了在 Windows 以及 Mac 上啟動 MariaDB
 # mysqld --innodb-flush-method=littlesync --innodb-use-native-aio=OFF --log_bin=ON
 
-run docker-compose up -d
+  run docker-compose up -d
 
